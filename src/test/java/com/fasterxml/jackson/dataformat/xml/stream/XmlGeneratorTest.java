@@ -1,6 +1,7 @@
 package com.fasterxml.jackson.dataformat.xml.stream;
 
 import java.io.*;
+import java.nio.file.Files;
 
 import javax.xml.namespace.QName;
 
@@ -123,7 +124,7 @@ public class XmlGeneratorTest extends XmlTestBase
     public void testWriteToFile() throws Exception
     {
         ObjectMapper mapper = new XmlMapper();
-        File f = File.createTempFile("test", ".tst");
+        File f = Files.createTempFile("test", ".tst").toFile();
         mapper.writeValue(f, new IntWrapper(42));
 
         String xml = readAll(f).trim();
